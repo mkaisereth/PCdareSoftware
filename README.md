@@ -1,5 +1,9 @@
 # PCdareSoftware
 
+CC BY-NC-SA 4.0 License  
+Attribution-NonCommercial-ShareAlike 4.0 International  
+Copyright (c) 2024 Mirko Kaiser  
+
 <!-- GETTING STARTED -->
 ## Getting Started
 
