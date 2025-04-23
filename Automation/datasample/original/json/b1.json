@@ -1,0 +1,85 @@
+{
+    "Export Version": 2,
+    "Image Data": {
+        "": {
+            "fontSize": 12,
+            "handleColor": "#ff0000",
+            "label": "",
+            "lineColor": "#b2ff53",
+            "measureData": {
+                "CSVLlabelitemAuto": "{}",
+                "CSVLlabelitemPosX": "{}",
+                "CSVLlabelitemPosY": "{}",
+                "CSVLlabelitemnames": "{}",
+                "DWG": "{\"Radiology-AP_C7PL\":\"-8.5 mm\",\"Radiology-AP_ClavicleAngle\":\"NaN\",\"Radiology-AP_LIV_Tilt\":\"NaN\",\"Radiology-AP_MainCurve_ApexDeviation\":\"-27.7 mm\",\"Radiology-AP_MainCurve_ApexPosition\":\"T9-T10\",\"Radiology-AP_MainCurve_CobbValue\":\"-48.0\",\"Radiology-AP_MainCurve_CurveType\":\"MT\",\"Radiology-AP_MainCurve_LowerEndVertebra_Position\":\"T12Inf\",\"Radiology-AP_MainCurve_UpperEndVertebra_Position\":\"T7Sup\",\"Radiology-AP_PelvicObliquity\":\"NaN\",\"Radiology-AP_SacralObliquity\":\"NaN\",\"Radiology-AP_SecondaryCurve_ApexDeviation\":\"12.9 mm\",\"Radiology-AP_SecondaryCurve_ApexPosition\":\"L2\",\"Radiology-AP_SecondaryCurve_CobbValue\":\"37.0°\",\"Radiology-AP_SecondaryCurve_CurveType\":\"L\",\"Radiology-AP_SecondaryCurve_LowerEndVertebra_Position\":\"L4Inf\",\"Radiology-AP_SecondaryCurve_UpperEndVertebra_Position\":\"T12Sup\",\"Radiology-AP_T1_Tilt\":\"-0.7\",\"Radiology-AP_TertiaryCurve_ApexDeviation\":\"-1.8 mm\",\"Radiology-AP_TertiaryCurve_ApexPosition\":\"T4-T5\",\"Radiology-AP_TertiaryCurve_CobbValue\":\"18.3°\",\"Radiology-AP_TertiaryCurve_CurveType\":\"MT\",\"Radiology-AP_TertiaryCurve_LowerEndVertebra_Position\":\"T7Inf\",\"Radiology-AP_TertiaryCurve_UpperEndVertebra_Position\":\"T2Sup\"}",
+                "LIV": "blank",
+                "ShowCSVL": false,
+                "ShowVertebraeMarkers": false,
+                "ShowVertebraeSpline": false,
+                "UIV": "blank",
+                "araScaler": 0.1335321795023286,
+                "hasBeenProcessedByV2": true,
+                "landmarkIndexes": "{\"L1InfAnt\":6,\"L1InfPost\":7,\"L1SupAnt\":2,\"L1SupPost\":3,\"L2InfAnt\":8,\"L2InfPost\":9,\"L2SupAnt\":10,\"L2SupPost\":11,\"L3InfAnt\":12,\"L3InfPost\":13,\"L3SupAnt\":14,\"L3SupPost\":15,\"L4InfAnt\":16,\"L4InfPost\":17,\"L4SupAnt\":18,\"L4SupPost\":19,\"L5InfAnt\":20,\"L5InfPost\":21,\"L5SupAnt\":22,\"L5SupPost\":23,\"S1SupAnt\":0,\"S1SupPost\":1,\"T10InfAnt\":58,\"T10InfPost\":59,\"T10SupAnt\":60,\"T10SupPost\":61,\"T11InfAnt\":62,\"T11InfPost\":63,\"T11SupAnt\":64,\"T11SupPost\":65,\"T12InfAnt\":66,\"T12InfPost\":67,\"T12SupAnt\":68,\"T12SupPost\":69,\"T1InfAnt\":24,\"T1InfPost\":25,\"T1SupAnt\":4,\"T1SupPost\":5,\"T2InfAnt\":26,\"T2InfPost\":27,\"T2SupAnt\":28,\"T2SupPost\":29,\"T3InfAnt\":30,\"T3InfPost\":31,\"T3SupAnt\":32,\"T3SupPost\":33,\"T4InfAnt\":34,\"T4InfPost\":35,\"T4SupAnt\":36,\"T4SupPost\":37,\"T5InfAnt\":38,\"T5InfPost\":39,\"T5SupAnt\":40,\"T5SupPost\":41,\"T6InfAnt\":42,\"T6InfPost\":43,\"T6SupAnt\":44,\"T6SupPost\":45,\"T7InfAnt\":46,\"T7InfPost\":47,\"T7SupAnt\":48,\"T7SupPost\":49,\"T8InfAnt\":50,\"T8InfPost\":51,\"T8SupAnt\":52,\"T8SupPost\":53,\"T9InfAnt\":54,\"T9InfPost\":55,\"T9SupAnt\":56,\"T9SupPost\":57}",
+                "landmarksSet": "[\"S1SupAnt\",\"S1SupPost\",\"L5InfAnt\",\"L5InfPost\",\"L5SupAnt\",\"L5SupPost\",\"L3InfAnt\",\"L3InfPost\",\"L3SupPost\",\"L2InfAnt\",\"L2InfPost\",\"L1InfAnt\",\"L1InfPost\",\"L1SupAnt\",\"L1SupPost\",\"T12InfAnt\",\"T12InfPost\",\"T12SupAnt\",\"T12SupPost\",\"T11SupPost\",\"T10InfPost\",\"T9InfAnt\",\"T5SupAnt\",\"T5SupPost\",\"T4InfAnt\",\"T4InfPost\",\"T4SupAnt\",\"T4SupPost\",\"T3SupAnt\",\"T2InfAnt\",\"T2InfPost\",\"T2SupAnt\",\"T2SupPost\",\"T1InfAnt\",\"T1InfPost\",\"T1SupAnt\",\"T1SupPost\"]",
+                "text_moved": true,
+                "trustedPoints": "[\"L4InfAnt\",\"L4InfPost\",\"L4SupPost\",\"L4SupAnt\",\"L2SupPost\",\"L2SupAnt\",\"T8InfAnt\",\"T8SupAnt\",\"T7InfAnt\",\"T7InfPost\",\"T7SupPost\",\"T7SupAnt\",\"T6InfAnt\",\"T6InfPost\",\"T6SupPost\",\"T6SupAnt\",\"T5InfPost\",\"T3InfAnt\",\"T3InfPost\"]",
+                "value": " ",
+                "version": 2
+            },
+            "measureOrmId": "22486",
+            "measurementTable": {
+                "baselineValues": {
+                    "Ara Version": "2",
+                    "C7PL": "-8.5",
+                    "MC: Apex": "T9-T10",
+                    "MC: Apex Deviation": "-27.7",
+                    "MC: Cobb": "-48.0",
+                    "MC: Type": "MT",
+                    "MC: Upper/Lower": "T7Sup-T12Inf",
+                    "SC: Apex": "L2",
+                    "SC: Apex Deviation": "12.9",
+                    "SC: Cobb": "37.0",
+                    "SC: Type": "L",
+                    "SC: Upper/Lower": "T12Sup-L4Inf",
+                    "T1 Tilt": "-0.7",
+                    "TC: Apex": "T4-T5",
+                    "TC: Apex Deviation": "-1.8",
+                    "TC: Cobb": "18.3",
+                    "TC: Type": "MT",
+                    "TC: Upper/Lower": "T2Sup-T7Inf"
+                },
+                "simulatedValues": {
+                    "Ara Version": "2",
+                    "C7PL": "-8.5",
+                    "MC: Apex": "T9-T10",
+                    "MC: Apex Deviation": "-27.7",
+                    "MC: Cobb": "-48.0",
+                    "MC: Type": "MT",
+                    "MC: Upper/Lower": "T7Sup-T12Inf",
+                    "SC: Apex": "L2",
+                    "SC: Apex Deviation": "12.9",
+                    "SC: Cobb": "37.0",
+                    "SC: Type": "L",
+                    "SC: Upper/Lower": "T12Sup-L4Inf",
+                    "T1 Tilt": "-0.7",
+                    "TC: Apex": "T4-T5",
+                    "TC: Apex Deviation": "-1.8",
+                    "TC: Cobb": "18.3",
+                    "TC: Type": "MT",
+                    "TC: Upper/Lower": "T2Sup-T7Inf"
+                }
+            },
+            "points": "(-15.3541,-4.36864),(234.942,26.0728),(11.6104,-874.392),(175.961,-949.397),(8.39282,-2365.75),(117.645,-2367.15),(46.7924,-747.572),(262.746,-844.448),(77.6614,-599.668),(309.355,-636.874),(63.9289,-723.684),(274.987,-783.674),(74.2791,-435.622),(316.119,-411.946),(80.4102,-571.746),(306.284,-575.301),(35.4594,-234.6),(267.453,-193.902),(64.7882,-390.844),(296.033,-354.13),(-11.9717,-41.5748),(245.089,-6.05983),(29.3008,-185.616),(262.966,-155.522),(11.1942,-2316.73),(121.847,-2320.93),(12.5948,-2206.07),(126.049,-2208.88),(12.5424,-2293.22),(125.565,-2295.24),(12.2509,-2099.59),(129.785,-2090.46),(20.9988,-2180.86),(130.034,-2181.44),(-7.64018,-1996.54),(113.455,-1970.3),(7.46358,-2081.93),(127.327,-2068.6),(-32.7557,-1883.14),(98.4171,-1851.44),(-7.01452,-1972.16),(110.642,-1946.95),(-71.2956,-1769.65),(70.0421,-1728.21),(-39.403,-1865.54),(92.3056,-1831.18),(-115.374,-1644.78),(27.3135,-1600.52),(-78.4349,-1751.51),(60.7921,-1707.38),(-153.696,-1515.46),(-4.21369,-1483.4),(-124.151,-1622.54),(17.7386,-1582.01),(-169.116,-1373.08),(-18.0224,-1371.89),(-156.769,-1488.11),(-10.9685,-1466.93),(-148.775,-1221.81),(7.46358,-1261.7),(-166.019,-1338.69),(-16.1541,-1353.72),(-89.8936,-1061.24),(70.5207,-1136.33),(-135.097,-1180.27),(15.9195,-1236.33),(-5.07235,-904.676),(162.293,-1003.02),(-63.7364,-1025.46),(95.0017,-1106.55)",
+            "pos": "(931.436, 3200.16)",
+            "textOffset": "(-584.436, -2858.16)",
+            "thickness": 2,
+            "type": "CoronalARAMeasure"
+        },
+        "overrideOrientation": "3"
+    },
+    "Patient Info": {
+        "Age": 17,
+        "Name": "Patient",
+        "Sex": "FEMALE"
+    }
+}
