@@ -1,0 +1,161 @@
+---
+title: "Power analysis for Interrater Cobb angle"
+---
+```{r setup, cache=FALSE, echo=FALSE} 
+knitr::opts_chunk$set(cache = TRUE, autodep = TRUE)
+set.seed(123)
+``` 
+
+# Simulate Data
+Cobb angle of rater from image at repetition:
+$$
+CobbAngle = mu + \widehat{\beta} \cdot is.student + rater_{effect} + img_{effect} + \varepsilon
+$$
+where
+$$rater_{effect} \sim \mathcal N(0, raterSD^2)  
+\\img_{effect} \sim \mathcal N(0, patientSD^2)
+\\\varepsilon \sim \mathcal N(0, repSD^2)$$
+and $raterSD$ SD between different raters, $patientSD$ SD between patients (Cobb angle), $repSD$ the SD between repetitions of same rater, $mu$ the average rating of all clinicians, $\widehat{\beta}$ the average difference between clinicians and students, $is.student$ whether this is a student or a clinician and $CobbAngle$ the resulting Cobb angle.
+
+
+```{r}
+library(mcreplicate)
+library(ggplot2)
+library(lmerTest)
+library(future.apply)
+library(tictoc)
+plan(multisession, workers = 16)  ## Parallelize on 16 local workers
+
+# n_Clin: the number of Clinicians (default 6 clinicians)
+# n_Stud: the number of Students (default 10 clinicians)
+# n_imgs_per_clin: the number of images per clinician (default 7 images)
+# n_imgs_per_stud: the number of images per students (default 8 images)
+# alpha_Clin: clinician effect: difference ratings of different clinicians on same image (default SD of 1.7° for Cobb angle (3*SD = +-5° ~ 99.7%))
+# alpha_Stud: student effect: difference ratings of different students on same image (default SD of 2.0° for Cobb angle (3*SD = +- 6° ~ 99.7%))
+# mu: the average ratings of clinicians over a real sample of images (with enough samples should converge towards real average of patient effect (Cobb angle), default 30° for Cobb angle)
+# beta_hat: the difference in average from students compared to mu (default 2° for Cobb angle, meaning students rate on average 2° more than clinicians)
+# obsSD: the observer effect: difference ratings of same clinician on same image for repetitions (default SD of 1.6° for Cobb angle (3*SD = +- 4.8° ~ 99.7%))
+# n_reps_Clin: the number of repetitions on same image for clinicians (default 3)
+# n_reps_Stud: the number of repetitions on same image for students (default 5)
+# imgSD: the "image" effect (the effect of the patient): the variation (SD) in the variable to investigate (e.g. Cobb angle) (default SD of 6.7° for Cobb angle (mu+-3*SD = [9.9° 50.1°] ~ 99.7%))
+get_data <- function(n_Clin=6, n_imgs_per_clin=7, n_Stud=10, n_imgs_per_stud=8, alpha_Clin=1.7, alpha_Stud=2.0, mu=30, obsSD=1.6, n_reps_Clin=3, n_reps_Stud=5, imgSD=6.7, beta_hat=2)
+{
+
+  # data for clinicians
+  raterID <- rep(1:n_Clin, each = n_imgs_per_clin, times = n_reps_Clin) # raterIDs for all clinicians, for each image and number of repetitions
+  imgID <- rep(1:n_imgs_per_clin, times=n_Clin*n_reps_Clin) # imageIDs for all images, repeated for all clinicians and number of repetitions
+  repID <- rep(1:n_reps_Clin, each = n_Clin*n_imgs_per_clin) # repetitionIDs for all repetitions, for each clinician and number of images per clinician
+  clinician_effect <- rnorm(n_Clin, 0, alpha_Clin) # clinician effect for all clinicians (with variation between clinicians)
+  eps <- rnorm(length(raterID), 0, obsSD) # noise: for each rater include the variation within the rater
+  img_effect <- rnorm(n_imgs_per_clin, 0, imgSD) # image (patient) effect: for each image, specify the variation (within population) (e.g. variation of Cobb angle in real population)
+  y <- mu + clinician_effect[raterID] + eps + img_effect[imgID] # now create the model for the variable of investigaton (e.g. Cobb angle)
+  dat_clinicians <- data.frame(
+    raterID = as.factor(raterID),
+    imgID = as.factor(imgID),
+    repID = as.factor(repID),
+    y = y,
+    is.student = rep(FALSE, length(y))
+  )
+
+  # data for students
+  raterID <- rep(1:n_Stud, each = n_imgs_per_stud, times = n_reps_Stud) # raterIDs for all students, for each image and number of repetitions
+  imgID <- rep(1:n_imgs_per_stud, times=n_Stud*n_reps_Stud) # imageIDs for all images, repeated for all students and number of repetitions
+  repID <- rep(1:n_reps_Stud, each = n_Stud*n_imgs_per_stud) # repetitionIDs for all repetitions, for each student and number of images per student
+  student_effect <- rnorm(n_Stud, 0, alpha_Stud) # student effect for all students (with variation between students)
+  eps <- rnorm(length(raterID), 0, obsSD) # noise: for each rater include the variation within the rater
+  img_effect <- rnorm(n_imgs_per_stud, 0, imgSD) # image (patient) effect: for each image, specify the variation (within population) (e.g. variation of Cobb angle in real population)
+  y <- mu + beta_hat + student_effect[raterID] + eps + img_effect[imgID] # now create the model for the variable of investigaton (e.g. Cobb angle)
+  dat_students <- data.frame(
+    raterID = as.factor(raterID),
+    imgID = as.factor(imgID),
+    repID = as.factor(repID),
+    y = y,
+    is.student = rep(TRUE, length(y))
+  )
+
+  dat <- rbind(dat_clinicians, dat_students)
+}
+
+my_analysis <- function(..., lower_conf_thres=-5, upper_conf_thres=5){
+  dat <- get_data(...)
+  fit <- lmer(y ~ is.student + (1|is.student:raterID) + imgID + repID, data = dat)
+  #summary(fit)
+  my_confint <- confint(fit, level = 0.9)["is.studentTRUE", ]
+  #print(my_confint)
+  # return TRUE if my_confint is in -5 5
+  power <- my_confint[1]>lower_conf_thres && my_confint[2]<upper_conf_thres
+  result <- list("power" = power, "lowerConfint"=my_confint[1], "upperConfint"=my_confint[2])
+}
+
+
+get_power <- function(...){
+  args <- list(...)
+  results <- future_replicate(500, do.call(my_analysis, args))
+
+  # POWER:
+  meanPower <- mean(unlist(results["power",]))
+  lowerConfints <- unlist(results["lowerConfint",])
+  upperConfints <- unlist(results["upperConfint",])
+  power <- list(power = meanPower, lowerConfints=lowerConfints, upperConfints=upperConfints)
+}
+```
+
+# Power Calculations
+
+```{r}
+set.seed(123)
+
+tic()
+ARGS <- as.data.frame(rbind(
+  expand.grid(
+    n_Clin=c(6),
+    n_imgs_per_clin=c(7),
+    n_Stud=c(10),
+    n_imgs_per_stud=c(7),
+    alpha_Clin=c(1.2,1.6),
+    alpha_Stud=c(1.2,1.6),
+    mu=30,
+    obsSD=c(1.2,1.6), # smaller gives better power
+    n_reps_Clin=c(3),
+    n_reps_Stud=c(3),
+    imgSD=c(3,6.7), # smaller gives better power
+    beta_hat=c(1.5,3)) # smaller gives better power
+  #expand.grid(
+  #  n_Clin=c(6),
+   # n_imgs_per_clin=c(7),
+    #n_Stud=c(10),
+    #n_imgs_per_stud=c(8),
+    #alpha_Clin=c(1.6),
+    ##alpha_Stud=c(1.6),
+    #mu=30,
+    ##obsSD=c(1.2), # smaller gives better power
+    #n_reps_Clin=c(3),
+    #n_reps_Stud=c(5),
+    #imgSD=c(6.7), # smaller gives better power
+    #beta_hat=c(3)) # smaller gives better power
+))
+rownames(ARGS) <- NULL
+
+Power <- matrix(NA, nrow=nrow(ARGS), ncol=1)
+colnames(Power) <- c("Power")
+
+for (i in 1:nrow(ARGS)){
+  tic()
+  args <- as.list(ARGS[i,])
+  tPower <- do.call(get_power, args)
+  Power[i,] <- tPower$power
+  cat("\n")
+  cat(i)
+  cat(" / ")
+  cat(nrow(ARGS))
+  cat("\n")
+  endtime <- toc()
+  cat("eta: ")
+  cat((nrow(ARGS)-i)*(endtime$toc-endtime$tic))
+  cat(" s")
+  
+  write.csv(as.data.frame(cbind(ARGS, Power)), "Power.csv")
+}
+as.data.frame(cbind(ARGS, Power))
+
+```
