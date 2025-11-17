@@ -19,3 +19,9 @@ Copyright (c) 2024 Mirko Kaiser
 
 ## Informed Consent Statement  
 Informed consent was obtained for all samples publicly available, and images were blurred and anonymized before release.
+
+## Related publications  
+https://doi.org/10.2139/ssrn.4849497  
+https://doi.org/10.1371/journal.pone.0321429  
+https://doi.org/10.1038/s41598-025-95902-1  
+https://doi.org/10.1117/12.3044268  
