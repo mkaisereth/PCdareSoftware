@@ -15,4 +15,7 @@ Copyright (c) 2024 Mirko Kaiser
     a) Line 14: basePath = "PathToYourData";  
     b) Line 46: loadLastDcmFile = false;  
     c) Line 47: loadLastPcFile = false;  
-    d) Line 49: drawOnly = true;  
+    d) Line 49: drawOnly = true;
+
+## Informed Consent Statement  
+Informed consent was obtained for all samples publicly available, and images were blurred and anonymized before release.
